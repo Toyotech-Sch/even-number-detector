@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title> Even Number Finder</title>
+</head>
+<body>
+
+    <div class="container p-3 mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0"> Even Number Detector </h3>
+            </div>
+
+            <div class="card-body p-3">
+                <div class="d-flex text-center mt-2 mb-2 align-items-center justify-content-around">
+                    <label for="start-number" class="input-label w-50"> Starting Number </label>
+                    <input type="number" name="start-number" id="start-number" class="form-control w-50">
+                </div>
+
+                <div class="d-flex text-center mt-2 mb-2 align-items-center justify-content-around">
+                    <label for="end-number" class="input-label w-50"> Ending Number </label>
+                    <input type="number" name="end-number" id="end-number" class="form-control w-50">
+                </div>
+
+
+                <div class="form-group text-center mt-3 p-2 rounded bg-light">
+                    <button id="calculator" class="btn btn-primary">Get Even Numbers</button>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <p>
+                    The even numbers between 
+                    <span id="start-value"></span>
+                    and
+                    <span id="end-value"></span>
+                    are <br>
+                    <span class="text-danger font-weight-bold " id="result-display" style="font-size: 40px;"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables | Converted from HTML to Javascript e.g #myId 
+        const btn = document.querySelector('#calculator');
+        const startNumber = document.querySelector('#start-number');
+        const endNumber = document.querySelector('#end-number');
+        const displayStart = document.querySelector('#start-value');
+        const displayEnd = document.querySelector('#end-value');
+        const displayEvens = document.querySelector('#result-display');
+
+        const evenNumbers = []; // empty array for storing even numbers
+
+        function getAllEvens(){
+            let startNum = Number(startNumber.value); // convert input value to number
+            let endNum = Number(endNumber.value); // convert input value to number
+            let initialStartNumber = startNum;
+
+            for(startNum; startNum < (endNum + 1); startNum++){
+                // i represents the starting point
+                if ((startNum !== 0) && (startNum % 2) === 0){
+                    console.log("Found even number", startNum)
+                    evenNumbers.push(startNum)
+                }
+            }
+
+            let evenStrings = evenNumbers.toLocaleString()
+            displayStart.innerText = String(initialStartNumber)
+            displayEnd.innerText = String(endNum)
+            displayEvens.innerText = `[${evenStrings}] \n ${evenNumbers[6]}`
+        }
+
+        btn.addEventListener('click', function(ev){
+            if (startNumber.value === ""){
+                return alert("Enter a start value")
+            }
+            if (endNumber.value === ""){
+                return alert("Enter an end value")
+            }
+            getAllEvens()
+        })
+    </script>
+</body>
+</html>
